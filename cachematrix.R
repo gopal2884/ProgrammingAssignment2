@@ -48,11 +48,20 @@ cacheSolve <- function(x, ...) {
         return(inverse)
 }
 
+
 ## Test Script
 
-x <- matrix(1:9, nrow=3, ncol = 3)
-xx <- makeCacheMatrix(x)
-xx$get()
-xx$setcache(solve(x))
-xx$getcache()
+rand <- runif(10000)
+matrx <- matrix(rand, nrow=100, ncol=100)
+x<-makeCacheMatrix(matrx)
 
+start.time = Sys.time()
+cacheSolve(x)
+dur1 = Sys.time() - start.time
+
+
+start.time = Sys.time()
+cacheSolve(x)
+dur = Sys.time() - start.time
+print(dur1)
+print(dur)
